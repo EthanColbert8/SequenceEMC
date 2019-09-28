@@ -19,24 +19,89 @@ public class Application {
 	 */
 	public static void main(String[] args) {
 		
+		Stack<Character> charStack = new Stack<Character>();//a stack to store the substring characters in
+		String string, substring;//stores the two strings we need to work with
+		Scanner input = new Scanner(System.in);//for input
+		boolean isSubstring = false, manual = true;//whether or not "substring" is a substring of "string"
 		
-		
-		Scanner input = new Scanner(System.in);
-		
-		String goAgain;
-		boolean end = false;
-		while (!(end)) {
+		/* This loop insures that we get valid input for the choice of whether to
+		 * enter strings manually or via a file (if input is invalid, the user is prompted again). */
+		boolean gotValid = false;
+		do {
 			
-			//here
+			System.out.print("Would you like to enter strings manually or from a file? (M or F): ");
+			String mORf = input.nextLine().toLowerCase();
 			
-			System.out.print("Would you like to enter more sequences? (Yes/No): ");
-			goAgain = input.nextLine();
-			if (goAgain.toLowerCase().charAt(0) == 'y') {
+			if (mORf.charAt(0) == 'm') {
+				manual = true;
+				gotValid = true;
+			}
+			else if (mORf.charAt(0) == 'f') {
+				manual = false;
+				gotValid = true;
+			}
+			
+		} while(!(gotValid));
+		
+		if (manual == true) {
+			
+			String goAgain;//whether the user wishes to enter another set of strings or not
+			boolean end = false;
+			do {
 				
-			}
-			else {
-				end = true;
-			}
+				System.out.print("Enter the subsequence to search for: ");
+				substring = input.nextLine().toLowerCase();
+				System.out.print("Enter the string to search through: ");
+				string = input.nextLine().toLowerCase();
+				
+				/* This loop pushes all the characters of the substring to the stack
+				 * in REVERSE order */
+				for (int i = 1; i <= substring.length(); i++) {
+					charStack.push(substring.charAt((substring.length() - i)));
+				}
+				
+				for (int j = 0; j < string.length(); j++) {
+					
+					/* If we find the character at the top of the stack (the next character in the substring) in "string",
+					 * we pop it off the stack. */
+					if (string.charAt(j) == charStack.peek()) {
+						charStack.pop();
+					}
+					
+					/* If the stack is empty, it means the substring is indeed a subsequence of "string". */
+					if (charStack.isEmpty()) {
+						
+						isSubstring = true;
+						
+						j = string.length();//ends the loop
+						
+					}
+					
+				}
+				
+				if (isSubstring) {
+					System.out.println(substring + " is a subsequence of " + string);
+				}
+				else {
+					System.out.println(substring + " is NOT a subsequence of " + string);
+				}
+				
+				charStack.clear();
+				isSubstring = false;
+				
+				System.out.print("Would you like to enter more sequences? (Yes or No): ");
+				goAgain = input.nextLine();
+				if (goAgain.toLowerCase().charAt(0) != 'y') {
+					end = true;
+				}
+			} while(!(end));
+		
+		}
+		
+		else {
+			
+			//code for file input goes here
+			System.out.println("We elected to input strings via file (stub message).");
 			
 		}
 		
