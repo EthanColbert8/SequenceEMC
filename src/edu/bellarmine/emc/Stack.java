@@ -35,7 +35,9 @@ public class Stack<T> implements StackInterface<T> {
 	 */
 	public T peek() {
 		
-		if (isEmpty()) {return null;}
+		if (isEmpty()) {
+			return null;
+		}
 		
 		return top.getData();
 	}// end "peek" method
@@ -45,7 +47,9 @@ public class Stack<T> implements StackInterface<T> {
 	 */
 	public T pop() {
 		
-		if (isEmpty()) {return null;}
+		if (isEmpty()) {
+			return null;
+		}
 		
 		Node tempNode = top;
 		
@@ -59,7 +63,9 @@ public class Stack<T> implements StackInterface<T> {
 	 */
 	public boolean isEmpty() {
 		
-		if (top == null) {return true;} 
+		if (top == null) {
+			return true;
+		} 
 		
 		return false;
 	}// end "isEmpty" method
@@ -98,12 +104,14 @@ public class Stack<T> implements StackInterface<T> {
 			return data;
 		}
 
-		/**
+		
+		/* This method is never used in this program.
 		 * @param data - the data to set
-		 */
+		 *
 		public void setData(T data) {
 			this.data = data;
 		}
+		*/
 
 		/**
 		 * @return the nextNode
@@ -112,12 +120,13 @@ public class Stack<T> implements StackInterface<T> {
 			return nextNode;
 		}
 
-		/**
+		/* This method is never used in this program.
 		 * @param nextNode - the nextNode to set
-		 */
+		 *
 		public void setNextNode(Node nextNode) {
 			this.nextNode = nextNode;
 		}
+		*/
 		
 	}// end "Node" inner class
 	

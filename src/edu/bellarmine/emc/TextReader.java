@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * This class executes the program.
+ * This class reads the file and puts its contents into ArrayLists.
  * 
  * @author Ethan Colbert
  * @version 1.0
@@ -18,7 +18,7 @@ public class TextReader {
 	private File file;//the file we need to read
 	private Scanner fileReader;//reads through the file and grabs strings
 	private ArrayList<String> strings, substrings;//ArrayLists to hold the contents of the file
-	int numberOfLines;//how many lines are in the file
+	private int numberOfLines;//how many lines are in the file
 	
 	/**
 	 * Empty-argument constructor - just instantiates things
@@ -31,6 +31,10 @@ public class TextReader {
 		
 	}// end empty-argument constructor
 	
+	/**
+	 * Full-argument constructor - instantiates data and fills the ArrayLists with the contents of the file passed in.
+	 * @param fileName - the name of the file containing the program's input
+	 */
 	public TextReader(String fileName) {
 		
 		strings = new ArrayList<String>();
@@ -41,7 +45,7 @@ public class TextReader {
 		
 		fillArrayLists();
 		
-	}
+	}// end full-argument constructor
 	
 	/**
 	 * Returns the string stored in the given index of "strings"
@@ -71,7 +75,7 @@ public class TextReader {
 
 	/**
 	 * SUPPORT METHOD - sets up the scanner to read from the file passed in
-	 * @param file - the name of the file the scanner will read from
+	 * @param fileName - the name of the file the scanner will read from
 	 */
 	private void startReader(String fileName) {
 		
